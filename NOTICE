@@ -1,0 +1,32 @@
+SNOWPACK .pro viewer
+
+Copyright (C) 2026 the SNOWPACK .pro viewer contributors.
+Licensed under the GNU Affero General Public License, version 3 or later.
+See LICENSE for the full terms.
+This software is provided without warranty; see LICENSE for details.
+
+niViz (https://niviz.org/) is the reference implementation for the
+scientific classifications, PRO interpretation, and display behavior.
+niViz is licensed under AGPL-3.0-or-later. Public source documentation
+and a deployed library bundle were reviewed; niViz JavaScript is not
+included in this project. See docs/upstream.md for pinned references.
+
+The consulted niViz source carries this copyright notice:
+Copyright (C) 2015 WSL/SLF - Fluelastrasse 11 - 7260 Davos Dorf - Switzerland.
+
+This project's implementation, dated 2026-09-24, reimplements the PRO
+timeline/profile workflow in TypeScript with Canvas/SVG rendering,
+independently drawn grain symbols, and standalone browser file controls.
+
+The hosted demo uses the MST96 seasonal example output bundled with
+SNOWPACK 3.7.0. SNOWPACK is licensed under LGPL-3.0-or-later; its
+license and incorporated GPL text are retained in
+docs/SNOWPACK-LICENSE.txt and docs/SNOWPACK-GPL-3.0.txt.
+
+The niViz example at https://niviz.org/resources/example.pro is retained
+as a test fixture. The niViz site identifies its content license as
+CC BY 4.0; see docs/NIVIZ-SITE-CC-BY-4.0.txt.
+
+Example data provenance is recorded in docs/upstream.md. The downloadable
+standalone viewer does not embed example data or require a network
+connection to open local files.

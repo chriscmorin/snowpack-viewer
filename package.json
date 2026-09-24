@@ -1,0 +1,54 @@
+{
+  "name": "snowpack-pro-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline SNOWPACK .pro viewer",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chriscmorin/snowpack-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chriscmorin/snowpack-viewer/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:demo": "node scripts/build.mjs --demo",
+    "example:import": "node scripts/import-example.mjs",
+    "release:local": "node scripts/package-release.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "test:consumer": "node --test tests/consumer.test.mjs",
+    "check": "npm run typecheck && npm run build && npm test",
+    "dev": "node scripts/build.mjs --watch"
+  },
+  "files": [
+    "dist/npm",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "docs/upstream.md",
+    "docs/NIVIZ-AGPL-3.0.txt",
+    "docs/NIVIZ-SITE-CC-BY-4.0.txt",
+    "docs/SNOWPACK-LICENSE.txt",
+    "docs/SNOWPACK-GPL-3.0.txt"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/npm/index.d.ts",
+      "import": "./dist/npm/index.js"
+    },
+    "./style.css": "./dist/npm/style.css"
+  },
+  "types": "./dist/npm/index.d.ts",
+  "module": "./dist/npm/index.js",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.2"
+  }
+}

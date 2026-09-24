@@ -1,0 +1,47 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      example_url:
+        description: Optional HTTPS URL of the pinned full-season .pro or .pro.gz example
+        required: false
+        type: string
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    permissions:
+      contents: read
+    env:
+      SPV_BROWSER: ${{ matrix.browser }}
+      SPV_FULL_SEASON: ${{ inputs.example_url != '' && '1' || '0' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Import optional full-season example
+        if: inputs.example_url != ''
+        env:
+          EXAMPLE_URL: ${{ inputs.example_url }}
+        run: npm run example:import -- --url "$EXAMPLE_URL"
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run check
+      - name: Package local artifacts
+        if: matrix.browser == 'chromium'
+        run: npm run release:local -- --skip-check
+      - uses: actions/upload-artifact@v4
+        if: matrix.browser == 'chromium'
+        with:
+          name: local-build-artifacts
+          path: dist/release/
+          if-no-files-found: error

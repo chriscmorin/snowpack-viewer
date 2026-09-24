@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.cache/
+.DS_Store
+*.tsbuildinfo
+coverage/
+__pycache__/
+*.pyc
